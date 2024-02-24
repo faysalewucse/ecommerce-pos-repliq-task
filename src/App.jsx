@@ -1,16 +1,11 @@
-import Cart from "./screen/Cart";
-import Products from "./screen/Products";
+import Home from "./pages/Home";
+import ShopProvider from "./providers/ShopProvider";
 
 function App() {
   return (
-    <div className="p-2 lg:flex max-w-[1920px] max-h-[1080px]">
-      <div className="flex-1">
-        <Cart />
-      </div>
-      <div className="flex-1">
-        <Products />
-      </div>
-    </div>
+    <ShopProvider>
+      <Home />
+    </ShopProvider>
   );
 }
 
