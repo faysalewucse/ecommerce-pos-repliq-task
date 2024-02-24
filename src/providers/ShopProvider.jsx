@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 
@@ -14,7 +15,11 @@ const ShopProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const shippingCharge = 5.5;
+  const tax = 25.5;
+  const discountOnCart = 10;
 
   // Fetch products and categories on mount
   useEffect(() => {
@@ -71,14 +76,56 @@ const ShopProvider = ({ children }) => {
       setCartItems((prevItems) =>
         prevItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { id: cartItems.length + 1, product, quantity: item.quantity + 1 }
             : item
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      setCartItems([
+        ...cartItems,
+        { id: cartItems.length + 1, product, quantity: 1 },
+      ]);
     }
   };
+
+  // Handle quantity increase
+  const increaseQuantity = (cartItemId) => {
+    const updatedItems = cartItems.map((item) =>
+      item.id === cartItemId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItems(updatedItems);
+  };
+
+  // Handle quantity decrease
+  const decreaseQuantity = (cartItemId) => {
+    const updatedItems = cartItems.map((item) =>
+      item.id === cartItemId
+        ? item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : { ...item, quantity: 1 } // Prevent negative quantity
+        : item
+    );
+    setCartItems(updatedItems);
+  };
+
+  // Handle cart item deletion
+  const deleteCartItem = (cartItemId) => {
+    const updatedItems = cartItems.filter((item) => item.id !== cartItemId);
+    setCartItems(updatedItems);
+  };
+
+  useEffect(() => {
+    let calculatedTotalPrice = 0;
+
+    if (cartItems.length > 0) {
+      calculatedTotalPrice = cartItems.reduce((acc, item) => {
+        const price = parseFloat(item.product.price);
+        return acc + price * item.quantity;
+      }, 0);
+    }
+
+    setTotalPrice(calculatedTotalPrice);
+  }, [cartItems]);
 
   return (
     <ShopContext.Provider
@@ -90,6 +137,13 @@ const ShopProvider = ({ children }) => {
         setSelectedCategory,
         addToCart,
         filterProductsByCategory,
+        increaseQuantity,
+        decreaseQuantity,
+        deleteCartItem,
+        totalPrice,
+        shippingCharge,
+        tax,
+        discountOnCart,
         isLoading,
       }}
     >

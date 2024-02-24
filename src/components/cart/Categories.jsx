@@ -2,7 +2,7 @@ import { usePosContext } from "../../providers/ShopProvider";
 import CategoryCard from "../cards/CategoryCard";
 import { SlOptionsVertical } from "react-icons/sl";
 
-const Categories = () => {
+const Categories = ({ openDrawer }) => {
   const { categories } = usePosContext();
 
   return (
@@ -12,7 +12,10 @@ const Categories = () => {
           <CategoryCard key={index} category={category} />
         ))}
       </div>
-      <SlOptionsVertical className="cursor-pointer text-2xl" />
+      <SlOptionsVertical
+        onClick={openDrawer}
+        className="cursor-pointer text-2xl"
+      />
     </div>
   );
 };
