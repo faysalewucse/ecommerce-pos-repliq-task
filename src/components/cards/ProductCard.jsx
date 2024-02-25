@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
       <img
         src={product.thumbnail}
         alt={product.id}
-        className="object-cover h-52 rounded-t"
+        className="object-cover h-40 rounded-t"
       />
       <p className="mb-2 font-semibold bg-[#F4F6F8] py-1">${product.price}</p>
       <hr />

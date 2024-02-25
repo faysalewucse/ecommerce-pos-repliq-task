@@ -16,8 +16,8 @@ const CartNavbar = () => {
 
   return (
     <div className="flex gap-2 items-center">
-      <div className="flex-1">
-        <VscMenu onClick={toggleDrawer} className="text-3xl" />
+      <div className="">
+        <VscMenu onClick={toggleDrawer} className="md:text-3xl" />
       </div>
       <IconButton icon={<PiNotePencilLight />} label={"Note"} />
       <IconButton icon={<MdOutlineLocalShipping />} label={"Shipping"} />

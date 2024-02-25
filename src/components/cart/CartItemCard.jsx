@@ -11,14 +11,14 @@ const CartItemCard = ({ cartItem }) => {
     <div className="flex items-center gap-2">
       <PiNotePencilLight className="text-xl" />
       <div className="flex-1 border p-2 flex justify-between">
-        <p className="w-1/2">{cartItem.product.title}</p>
-        <p className="flex-1">$ {cartItem.product.price}</p>
+        <p className="md:text-lg text-sm w-1/2">{cartItem.product.title}</p>
+        <p className="md:text-lg text-sm flex-1">$ {cartItem.product.price}</p>
         <div className="flex-1 flex items-center gap-3">
           <FaCircleMinus onClick={() => decreaseQuantity(cartItem.id)} />
           <p>{cartItem.quantity}</p>
           <FaCirclePlus onClick={() => increaseQuantity(cartItem.id)} />
         </div>
-        <p className="flex-1 text-end">
+        <p className="md:text-lg text-sm flex-1 text-end">
           $ {cartItem.product.price * cartItem.quantity}
         </p>
       </div>

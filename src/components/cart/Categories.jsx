@@ -6,9 +6,9 @@ const Categories = ({ openDrawer }) => {
   const { categories } = usePosContext();
 
   return (
-    <div className="flex gap-2 items-center justify-between">
+    <div className="my-3 flex gap-2 items-center justify-between">
       <div className="flex gap-2">
-        {categories.slice(0, 4).map((category, index) => (
+        {categories.slice(0, 3).map((category, index) => (
           <CategoryCard key={index} category={category} />
         ))}
       </div>

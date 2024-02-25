@@ -17,6 +17,7 @@ const ShopProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [paymentScreen, setPaymentScreen] = useState(false);
   const shippingCharge = 5.5;
   const tax = 25.5;
   const discountOnCart = 10;
@@ -124,7 +125,7 @@ const ShopProvider = ({ children }) => {
       }, 0);
     }
 
-    setTotalPrice(calculatedTotalPrice);
+    setTotalPrice(calculatedTotalPrice + tax + shippingCharge - discountOnCart);
   }, [cartItems]);
 
   return (
@@ -144,6 +145,8 @@ const ShopProvider = ({ children }) => {
         shippingCharge,
         tax,
         discountOnCart,
+        paymentScreen,
+        setPaymentScreen,
         isLoading,
       }}
     >
