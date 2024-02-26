@@ -7,6 +7,8 @@ const CartItemCard = ({ cartItem }) => {
   const { increaseQuantity, decreaseQuantity, deleteCartItem } =
     usePosContext();
 
+  console.log(cartItem);
+
   return (
     <div className="flex items-center gap-2">
       <PiNotePencilLight className="text-xl" />

@@ -9,3 +9,12 @@
 .transition-300 {
   @apply transition-all duration-300;
 }
+
+.customOverlay {
+  background: rgba(56, 56, 56, 0.7);
+}
+.customModal {
+  background: #e7e9f6;
+  max-width: 500px;
+  width: 80%;
+}

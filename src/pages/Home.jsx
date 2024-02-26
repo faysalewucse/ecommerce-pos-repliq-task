@@ -17,7 +17,7 @@ const Home = () => {
       <div className="flex-1">
         <Products />
       </div>
-      <Toaster position="top-center" />
+      <Toaster position="bottom-right" />
     </div>
   );
 };

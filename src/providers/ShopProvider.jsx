@@ -72,12 +72,15 @@ const ShopProvider = ({ children }) => {
 
   // Function to add product to cart
   const addToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
+    console.log(product);
+    const existingItem = cartItems.find(
+      (item) => item.product.id === product.id
+    );
     if (existingItem) {
       setCartItems((prevItems) =>
         prevItems.map((item) =>
-          item.id === product.id
-            ? { id: cartItems.length + 1, product, quantity: item.quantity + 1 }
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       );
@@ -91,6 +94,8 @@ const ShopProvider = ({ children }) => {
 
   // Handle quantity increase
   const increaseQuantity = (cartItemId) => {
+    console.log(cartItemId);
+
     const updatedItems = cartItems.map((item) =>
       item.id === cartItemId ? { ...item, quantity: item.quantity + 1 } : item
     );
