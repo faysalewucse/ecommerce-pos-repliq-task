@@ -11,9 +11,7 @@ const CustomerForm = () => {
     setDetails(newDetails);
   };
 
-  const handleUpdate = () => {
-    console.log(details);
-  };
+  const handleUpdate = () => {};
 
   return (
     <div className="p-10">

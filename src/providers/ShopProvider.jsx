@@ -72,7 +72,6 @@ const ShopProvider = ({ children }) => {
 
   // Function to add product to cart
   const addToCart = (product) => {
-    console.log(product);
     const existingItem = cartItems.find(
       (item) => item.product.id === product.id
     );
@@ -94,8 +93,6 @@ const ShopProvider = ({ children }) => {
 
   // Handle quantity increase
   const increaseQuantity = (cartItemId) => {
-    console.log(cartItemId);
-
     const updatedItems = cartItems.map((item) =>
       item.id === cartItemId ? { ...item, quantity: item.quantity + 1 } : item
     );

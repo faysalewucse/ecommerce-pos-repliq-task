@@ -10,7 +10,6 @@ const PaymentForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form data:", new FormData(event.target));
   };
 
   const PaymentMethod = ({ label }) => {
